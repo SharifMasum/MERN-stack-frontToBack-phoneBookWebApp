@@ -6,26 +6,30 @@ class App extends React.Component {
     this.state = {
       persons: [
         { name: 'Arto Hellas',
-          id: 1
-      }
+          id: 1,
+        }
       ],
-      newName: ''
+      newName: '',
+      prevent: true
     }
   }
 
   addName = (event) => {
     event.preventDefault()
-    const personObject = {
-      name: this.state.newName,
-      id: this.state.persons.length + 1
+    if (!this.state.persons.find((person) => 
+    person.name === this.state.newName)) {
+      const personObject = {
+        name: this.state.newName,
+        id: this.state.persons.length + 1
+      }
+    
+      const persons = this.state.persons.concat(personObject)
+
+      this.setState({
+        persons,
+        newName: ''
+      })
     }
-
-    const persons = this.state.persons.concat(personObject)
-
-    this.setState({
-      persons,
-      newName: ''
-    })
   }
 
   handleNameChange = (event) => {
