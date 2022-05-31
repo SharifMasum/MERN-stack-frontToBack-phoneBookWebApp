@@ -1,5 +1,35 @@
 import React from 'react';
 
+const Info = (props) => {
+  return (
+    props.persons.map(person =>
+      <div key={person.id}>{person.name} {person.number}</div>
+    )
+  )
+}
+
+const Form = (props) => {
+  return (
+    <form onSubmit={props.addNameNumber}>
+          <div>
+            name: <input 
+            value={props.newName} 
+            onChange={props.handleNameChange} 
+          />
+          </div>
+          <div>
+            number: <input 
+            value={props.newNumber} 
+            onChange={props.handleNumberChange} 
+          />
+          </div>
+          <div>
+            <button type="submit">add</button>
+          </div>
+        </form>
+  )
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -7,7 +37,7 @@ class App extends React.Component {
       persons: [
         { name: 'Arto Hellas',
           number: '040-12345678',
-          id: 1,
+          id: 1
         }
       ],
       newName: '',
@@ -52,28 +82,15 @@ class App extends React.Component {
     return (
       <div>
         <h2>Phone directory</h2>
-        <form onSubmit={this.addNameNumber}>
-          <div>
-            name: <input 
-            value={this.state.newName} 
-            onChange={this.handleNameChange} 
-          />
-          </div>
-          <div>
-            number: <input 
-            value={this.state.newNumber} 
-            onChange={this.handleNumberChange} 
-          />
-          </div>
-          <div>
-            <button type="submit">add</button>
-          </div>
-        </form>
+        <Form
+          addNameNumber={this.addNameNumber}
+          newName={this.state.newName} 
+          handleNameChange={this.handleNameChange} 
+          newNumber={this.state.newNumber} 
+          handleNumberChange={this.handleNumberChange} 
+        />
         <h2>Names</h2>
-        <div>
-        {this.state.persons.map(person =>
-        <div key={person.id}>{person.name} {person.number}</div>)}
-        </div>
+        <Info persons={this.state.persons} />
       </div>
     )
   }
