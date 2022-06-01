@@ -12,7 +12,3 @@ axios.get('http://localhost:3001/persons').then(response => {
   )
 })
 
-/*ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-)*/
