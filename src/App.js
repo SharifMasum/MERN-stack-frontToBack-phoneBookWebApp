@@ -3,9 +3,12 @@ import axios from 'axios'
 
 const Info = (props) => {
   return (
-    props.persons.map(person =>
-      <div key={person.id}>{person.name} {person.number}</div>
+      props.persons.map(person =>
+      <div key={person.id}> {person.name} {person.number} 
+      <button type='button' onClick={() => props.removeNameNumber(person.id)}>Remove</button>
+      </div>
     )
+    
   )
 }
 
@@ -85,6 +88,16 @@ class App extends React.Component {
     this.setState({ newNumber: event.target.value })
   }
 
+  removeNameNumber = (id) => {
+    
+    axios.delete(`http://localhost:3001/persons/${id}`)
+      .then(response => {
+        this.setState({
+          persons: this.state.persons.filter(person => person.id !== id)
+        })
+      })
+  }
+
   render() {
     console.log('render')
     return (
@@ -98,7 +111,7 @@ class App extends React.Component {
           handleNumberChange={this.handleNumberChange} 
         />
         <h2>Names</h2>
-        <Info persons={this.state.persons} />
+        <Info persons={this.state.persons} removeNameNumber={this.removeNameNumber} />
       </div>
     )
   }
