@@ -48,7 +48,7 @@ class App extends React.Component {
   componentDidMount() {
     console.log('did mount')
     axios
-      .get('http://localhost:3001/persons')
+      .get('http://localhost:3001/api/persons')
       .then(response => {
         console.log('promise fulfilled')
         this.setState({ persons: response.data })
@@ -68,7 +68,7 @@ class App extends React.Component {
         id: this.state.persons.length + 1
       }
 
-      axios.post('http://localhost:3001/persons', personObject)
+      axios.post('http://localhost:3001/api/persons', personObject)
       .then(response => {
         this.setState({
           persons: this.state.persons.concat(response.data),
@@ -90,7 +90,7 @@ class App extends React.Component {
 
   removeNameNumber = (id) => {
     
-    axios.delete(`http://localhost:3001/persons/${id}`)
+    axios.delete(`http://localhost:3001/api/persons/${id}`)
       .then(response => {
         this.setState({
           persons: this.state.persons.filter(person => person.id !== id)
