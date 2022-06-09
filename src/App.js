@@ -9,34 +9,34 @@ const getAll = () => {
 
 const Info = (props) => {
   return (
-      props.persons.map(person =>
-      <div key={person.id}> {person.name} {person.number} 
-      <button type='button' onClick={() => props.removeNameNumber(person.id)}>Remove</button>
+    props.persons.map(person =>
+      <div key={person.id}> {person.name} {person.number}
+        <button type='button' onClick={() => props.removeNameNumber(person.id)}>Remove</button>
       </div>
     )
-    
+
   )
 }
 
 const Form = (props) => {
   return (
     <form onSubmit={props.addNameNumber}>
-          <div>
-            name: <input 
-            value={props.newName} 
-            onChange={props.handleNameChange} 
-          />
-          </div>
-          <div>
-            number: <input 
-            value={props.newNumber} 
-            onChange={props.handleNumberChange} 
-          />
-          </div>
-          <div>
-            <button type="submit">add</button>
-          </div>
-        </form>
+      <div>
+        name: <input
+          value={props.newName}
+          onChange={props.handleNameChange}
+        />
+      </div>
+      <div>
+        number: <input
+          value={props.newNumber}
+          onChange={props.handleNumberChange}
+        />
+      </div>
+      <div>
+        <button type="submit">add</button>
+      </div>
+    </form>
   )
 }
 
@@ -58,16 +58,16 @@ class App extends React.Component {
       .then(response => {
         console.log('promise fulfilled')
         this.setState({ persons: response.data })
-    })
+      })
   }
 
   addNameNumber = (event) => {
     event.preventDefault()
-    if 
-    ((!this.state.persons.find((person) => 
-    person.name === this.state.newName))&&
-    (!this.state.persons.find((person) => 
-    person.number === this.state.newNumber))){
+    if
+      ((!this.state.persons.find((person) =>
+        person.name === this.state.newName)) &&
+      (!this.state.persons.find((person) =>
+        person.number === this.state.newNumber))) {
       const personObject = {
         name: this.state.newName,
         number: this.state.newNumber,
@@ -75,12 +75,12 @@ class App extends React.Component {
       }
 
       axios.post('http://localhost:3001/api/persons', personObject)
-      .then(response => {
-        this.setState({
-          persons: this.state.persons.concat(response.data),
-          newPerson: ''
+        .then(response => {
+          this.setState({
+            persons: this.state.persons.concat(response.data),
+            newPerson: ''
+          })
         })
-      })
     }
   }
 
@@ -95,7 +95,7 @@ class App extends React.Component {
   }
 
   removeNameNumber = (id) => {
-    
+
     axios.delete(`http://localhost:3001/api/persons/${id}`)
       .then(response => {
         this.setState({
@@ -111,10 +111,10 @@ class App extends React.Component {
         <h2>Phone directory</h2>
         <Form
           addNameNumber={this.addNameNumber}
-          newName={this.state.newName} 
-          handleNameChange={this.handleNameChange} 
-          newNumber={this.state.newNumber} 
-          handleNumberChange={this.handleNumberChange} 
+          newName={this.state.newName}
+          handleNameChange={this.handleNameChange}
+          newNumber={this.state.newNumber}
+          handleNumberChange={this.handleNumberChange}
         />
         <h2>Names</h2>
         <Info persons={this.state.persons} removeNameNumber={this.removeNameNumber} />
