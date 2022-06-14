@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 const Person = require('./models/config')
 
+require('dotenv').config()
+
+console.log(process.env)
+
 const savePersons = (name, number) => {
   const person = new Person({
     name: name,
@@ -28,6 +32,8 @@ const listPersons = () => {
       mongoose.connection.close()
     })
 }
+
+mongoose.connect(process.env.MONGO_URL).then(res => console.log("It works!")).catch(e => console.log("It doesnt work!", e))
 
 if (process.argv.length == 2) {
   listPersons()
