@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(8, 8, 8);
+    background: rgb(55, 185, 236);
+  }
+
+  header {
+    font-size: 2.5rem;
+    font: bolder;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    background: blue;
+    position: sticky;
+    color: #fff;
+  }
+
+  .input {
+    text-align: center;
+  }
+
+  .form {
+    text-align: center;
+  }
+
+  .entries {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+  table, tr, td, th {
+    border: 1px solid;
+    width: 40%;
+    background: #fff;
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgb(29, 28, 28);
+    color: #fff;
+    height: 50px; 
+    z-index: -1;
+}
+

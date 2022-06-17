@@ -10,30 +10,33 @@ const getAll = () => {
 const Info = (props) => {
   return (
     props.persons.map(person =>
-      <div key={person.id}> {person.name} {person.number}
-        <button type='button' onClick={() => props.removeNameNumber(person.id)}>Remove</button>
-      </div>
+      <table className='table'>
+        <tr>
+          <td><div key={person.id}> {person.name}</div></td>
+          <td><div key={person.id}> {person.number}</div></td>
+          <td><button type='button' onClick={() => props.removeNameNumber(person.id)}>Remove</button></td>
+        </tr>
+      </table>
     )
-
   )
 }
 
 const Form = (props) => {
   return (
-    <form onSubmit={props.addNameNumber}>
-      <div>
-        name: <input
+    <form className='form' onSubmit={props.addNameNumber}>
+      <div className='name'>
+        Name: <input
           value={props.newName}
           onChange={props.handleNameChange}
         />
       </div>
-      <div>
-        number: <input
+      <div className='number'>
+        Number: <input
           value={props.newNumber}
           onChange={props.handleNumberChange}
         />
       </div>
-      <div>
+      <div className='add'>
         <button type="submit">add</button>
       </div>
     </form>
@@ -108,7 +111,8 @@ class App extends React.Component {
     console.log('render')
     return (
       <div>
-        <h2>Phone directory</h2>
+        <header>Phone directory</header>
+        <h2 className='input'>Input</h2>
         <Form
           addNameNumber={this.addNameNumber}
           newName={this.state.newName}
@@ -116,8 +120,16 @@ class App extends React.Component {
           newNumber={this.state.newNumber}
           handleNumberChange={this.handleNumberChange}
         />
-        <h2>Names</h2>
+        <h2 className='entries'>Entries</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Remove</th>
+          </tr>
+        </table>
         <Info persons={this.state.persons} removeNameNumber={this.removeNameNumber} />
+        <footer className='footer'>Copyright &copy; Md Shariful Islam, 2022</footer>
       </div>
     )
   }
