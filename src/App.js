@@ -14,7 +14,7 @@ const Info = (props) => {
         <tr>
           <td><div key={person.id}> {person.name}</div></td>
           <td><div key={person.id}> {person.number}</div></td>
-          <td><button type='button' onClick={() => props.removeNameNumber(person.id)}>Remove</button></td>
+          <td><button className='removebtn' type='button' onClick={() => props.removeNameNumber(person.id)}>Remove</button></td>
         </tr>
       </table>
     )
@@ -37,7 +37,7 @@ const Form = (props) => {
         />
       </div>
       <div className='add'>
-        <button type="submit">add</button>
+        <button className='addbtn' type="submit">add</button>
       </div>
     </form>
   )
