@@ -8,8 +8,22 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app (front-end) in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+### node index
+
+Runs the back-end in the development mode.\
+Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
+Once back-end runs, reload http://localhost:3000. database will be fetched to front-end.
+
+### node mongo.js "User Name" phoneNumber
+
+You can add information to MongoBD database.\
+
+### node mongo.js
+
+Fetch data from Mongo server to console.\
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
